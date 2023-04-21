@@ -19,7 +19,7 @@ class MovieSpot extends StatelessWidget {
       title: Strings.appTitle,
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home:  HomePage(),
+      home:  const HomePage(),
     );
   }
 }

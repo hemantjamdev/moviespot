@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class Strings {
   static const String apiKeyV3 = "4af21681ecd4e3a5ee68d7d3a9c203ba";
