@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviespot/constants/strings.dart';
+import 'package:moviespot/provider/movie_detail_provider.dart';
 import 'package:moviespot/provider/popular_provider.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
 import 'package:moviespot/utils/inernet_connectivity.dart';
@@ -24,17 +25,15 @@ class MovieSpot extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<NowPlayingProvider>(
-            create: (context) => NowPlayingProvider(),
-          ),
+              create: (context) => NowPlayingProvider()),
           ChangeNotifierProvider<PopularProvider>(
-            create: (context) => PopularProvider(),
-          ),
+              create: (context) => PopularProvider()),
           ChangeNotifierProvider<TopRatedProvider>(
-            create: (context) => TopRatedProvider(),
-          ),
+              create: (context) => TopRatedProvider()),
           ChangeNotifierProvider<ConnectivityProvider>(
-            create: (context) => ConnectivityProvider(),
-          ),
+              create: (context) => ConnectivityProvider()),
+          ChangeNotifierProvider<MovieDetailsProvider>(
+              create: (context) => MovieDetailsProvider()),
         ],
         child: MaterialApp(
           title: Strings.appTitle,

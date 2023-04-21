@@ -13,7 +13,7 @@ class TopRated extends StatelessWidget {
       builder: (context, TopRatedProvider provider, child) {
         return SizedBox(
           height: 300,
-          child: provider.movieModel != null
+          child: provider.movieModel.isNotEmpty
               ? ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,

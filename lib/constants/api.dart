@@ -2,6 +2,8 @@ import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/model/movie_details_model.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
+import '../model/cast_model.dart';
+
 class API {
   static TMDB tmdb = TMDB(
     ApiKeys(Strings.apiKeyV3, Strings.readAccessToken),
@@ -12,6 +14,15 @@ class API {
         showInfoLogs: true,
         showWarningLogs: true),
   );
+
+  static getMovieImages(int movieId) async {
+    final res = await tmdb.v3.movies.getImages(movieId);
+  }
+
+  static Future<CastModel> getCasting(int movieId) async {
+    final res = await tmdb.v3.movies.getCredits(movieId);
+    return CastModel.fromJson(res as Map<String, dynamic>);
+  }
 
   static Future<List<MovieModel>> getMovieList(String type) async {
     List<MovieModel> movies = <MovieModel>[];

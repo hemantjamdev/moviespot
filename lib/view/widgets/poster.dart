@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moviespot/constants/colors.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/model/movie_details_model.dart';
-import 'package:moviespot/model/now_playing_model.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
 
 class Poster extends StatelessWidget {

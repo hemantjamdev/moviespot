@@ -14,4 +14,6 @@ class Strings {
 
   /// app related strings
   static const appTitle = "MovieSpot";
+
+  /// hero tags
 }
