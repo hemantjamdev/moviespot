@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviespot/constants/strings.dart';
+import 'package:moviespot/provider/popular_provider.dart';
+import 'package:moviespot/provider/top_rated_provider.dart';
 import 'package:moviespot/view/pages/home_page.dart';
+import 'package:provider/provider.dart';
+
+import 'provider/now_playing_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +20,23 @@ class MovieSpot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: Strings.appTitle,
-      theme: ThemeData(useMaterial3: true),
-      debugShowCheckedModeBanner: false,
-      home:  const HomePage(),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<NowPlayingProvider>(
+            create: (context) => NowPlayingProvider(),
+          ),
+          ChangeNotifierProvider<PopularProvider>(
+            create: (context) => PopularProvider(),
+          ),
+          ChangeNotifierProvider<TopRatedProvider>(
+            create: (context) => TopRatedProvider(),
+          ),
+        ],
+        child: MaterialApp(
+          title: Strings.appTitle,
+          theme: ThemeData(useMaterial3: true),
+          debugShowCheckedModeBanner: false,
+          home: const HomePage(),
+        ));
   }
 }
