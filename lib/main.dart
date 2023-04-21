@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/view/pages/home_page.dart';
 
 void main() {
@@ -15,9 +16,10 @@ class MovieSpot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: Strings.appTitle,
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home:  HomePage(),
     );
   }
 }
