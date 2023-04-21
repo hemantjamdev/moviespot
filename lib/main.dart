@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/provider/popular_provider.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
+import 'package:moviespot/utils/inernet_connectivity.dart';
 import 'package:moviespot/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,9 @@ class MovieSpot extends StatelessWidget {
           ),
           ChangeNotifierProvider<TopRatedProvider>(
             create: (context) => TopRatedProvider(),
+          ),
+          ChangeNotifierProvider<ConnectivityProvider>(
+            create: (context) => ConnectivityProvider(),
           ),
         ],
         child: MaterialApp(

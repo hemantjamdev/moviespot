@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviespot/model/movie_details_provider.dart';
+import 'package:moviespot/model/movie_details_model.dart';
 
 import '../../constants/strings.dart';
 

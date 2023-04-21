@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:moviespot/constants/api.dart';
 
-import '../model/movie_details_provider.dart';
-import '../model/popular_model.dart';
+import '../constants/strings.dart';
+import '../model/movie_details_model.dart';
 
 class PopularProvider extends ChangeNotifier {
   PopularProvider() {
@@ -12,11 +12,7 @@ class PopularProvider extends ChangeNotifier {
   List<MovieModel> movieModel = <MovieModel>[];
 
   getPopular() async {
-    Map<dynamic, dynamic> res = await API.tmdb.v3.movies.getPopular();
-    List<dynamic> list = res["results"];
-    for (var element in list) {
-      movieModel.add(MovieModel.fromJson(element));
-    }
+    movieModel = await API.getMovieList(Strings.popular);
     notifyListeners();
   }
 }

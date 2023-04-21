@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               OutlinedButton(
                   onPressed: () {}, child: const Text("Latest Movie")),
