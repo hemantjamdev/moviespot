@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moviespot/model/movie_details_provider.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
+import 'package:moviespot/view/widgets/poster.dart';
 import 'package:provider/provider.dart';
-import 'package:tmdb_api/tmdb_api.dart';
-
-import '../../constants/strings.dart';
-import '../../model/top_rated_model.dart';
 
 class TopRated extends StatelessWidget {
   const TopRated({super.key});
@@ -12,21 +10,24 @@ class TopRated extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<TopRatedProvider>(
-        builder: (context, TopRatedProvider provider, child) {
-      return SizedBox(
-        height: 300,
-        child: provider.topRatedModel.results != null
-            ? ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: provider.topRatedModel.results!.length,
-                itemBuilder: (context, int index) {
-                  return Image.network(
-                    "${Strings.imageBase}${provider.topRatedModel.results![index].posterPath}",
-                  );
-                })
-            : const SizedBox(),
-      );
-    });
+      builder: (context, TopRatedProvider provider, child) {
+        return SizedBox(
+          height: 300,
+          child: provider.movieModel != null
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: provider.movieModel.length,
+                  itemBuilder: (context, int index) {
+                    MovieModel movie = provider.movieModel[index];
+                    return Poster(
+                      movie: movie,
+                    );
+                  },
+                )
+              : const SizedBox(),
+        );
+      },
+    );
   }
 }

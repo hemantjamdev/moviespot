@@ -22,12 +22,12 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               OutlinedButton(
-                  onPressed: () {}, child: const Text("getLatestMovie")),
+                  onPressed: () {}, child: const Text("Latest Movie")),
               const TopRated(),
               OutlinedButton(
-                  onPressed: () {}, child: const Text("getNowPlaying")),
+                  onPressed: () {}, child: const Text("Now Playing")),
               const NowPlaying(),
-              OutlinedButton(onPressed: () {}, child: const Text("getPopular")),
+              OutlinedButton(onPressed: () {}, child: const Text("Popular")),
               const PopularMovies(),
             ],
           ),

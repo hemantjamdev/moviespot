@@ -1,3 +1,4 @@
+/*
 class NowPlayingModel {
   NowPlayingModel({
     this.dates,
@@ -121,3 +122,4 @@ class Results {
     return data;
   }
 }
+*/

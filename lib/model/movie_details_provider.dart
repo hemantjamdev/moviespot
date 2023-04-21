@@ -1,37 +1,5 @@
-/*
-class PopularModel {
-  PopularModel({
-    this.page,
-    this.results,
-    this.totalPages,
-    this.totalResults,
-  });
-
-  int? page;
-  List<Results>? results;
-  int? totalPages;
-  int? totalResults;
-
-  PopularModel.fromJson(Map<String, dynamic> json) {
-    page = json['page'];
-    results =
-        List.from(json['results']).map((e) => Results.fromJson(e)).toList();
-    totalPages = json['total_pages'];
-    totalResults = json['total_results'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['page'] = page;
-    data['results'] = results!.map((e) => e.toJson()).toList();
-    data['total_pages'] = totalPages;
-    data['total_results'] = totalResults;
-    return data;
-  }
-}
-
-class Results {
-  Results({
+class MovieModel {
+  MovieModel({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -63,7 +31,7 @@ class Results {
   double? voteAverage;
   int? voteCount;
 
-  Results.fromJson(Map<String, dynamic> json) {
+  MovieModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
@@ -99,4 +67,3 @@ class Results {
     return data;
   }
 }
-*/
