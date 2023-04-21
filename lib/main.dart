@@ -1,4 +1,23 @@
 import 'package:flutter/material.dart';
-void main(){
+import 'package:flutter/services.dart';
+import 'package:moviespot/view/pages/home_page.dart';
 
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  runApp(const MovieSpot());
+}
+
+class MovieSpot extends StatelessWidget {
+  const MovieSpot({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(useMaterial3: true),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+    );
+  }
 }
