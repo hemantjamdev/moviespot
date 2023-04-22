@@ -21,14 +21,12 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              OutlinedButton(
-                  onPressed: () {}, child: const Text("Latest Movie")),
+            children:  [
+              const Text("Now Showing",style: TextStyle(fontSize: 24),),
+              NowPlaying(),
+              const Text("Top Rated",style: TextStyle(fontSize: 24),),
               const TopRated(),
-              OutlinedButton(
-                  onPressed: () {}, child: const Text("Now Playing")),
-              const NowPlaying(),
-              OutlinedButton(onPressed: () {}, child: const Text("Popular")),
+              const Text("Popular",style: TextStyle(fontSize: 24),),
               const PopularMovies(),
             ],
           ),

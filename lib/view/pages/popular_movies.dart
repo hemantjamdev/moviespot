@@ -13,7 +13,7 @@ class PopularMovies extends StatelessWidget {
         builder: (context, PopularProvider provider, child) {
       return SizedBox(
         height: 300,
-        width: 700,
+       // width: 700,
         child: provider.movieModel.isNotEmpty
             ? ListView.builder(
                 shrinkWrap: true,

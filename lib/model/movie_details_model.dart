@@ -39,7 +39,7 @@ class MovieModel {
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
-    popularity = json['popularity'];
+    popularity = double.parse(json['popularity'].toString());
     posterPath = json['poster_path'];
     releaseDate = json['release_date'];
     title = json['title'];

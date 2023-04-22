@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:moviespot/model/cast_model.dart';
 
 import '../constants/api.dart';
-import '../model/cast_model.dart';
 
 class MovieDetailsProvider extends ChangeNotifier {
   CastModel castModel = CastModel();
