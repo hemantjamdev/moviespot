@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviespot/constants/strings.dart';
+import 'package:moviespot/provider/favorite_provider.dart';
 import 'package:moviespot/provider/movie_detail_provider.dart';
 import 'package:moviespot/provider/popular_provider.dart';
+import 'package:moviespot/provider/search_provider.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
 import 'package:moviespot/utils/inernet_connectivity.dart';
 import 'package:moviespot/utils/theme.dart';
 import 'package:moviespot/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
-
+import 'package:sizer/sizer.dart';
 import 'provider/now_playing_provider.dart';
 
 void main() {
@@ -24,23 +26,32 @@ class MovieSpot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<NowPlayingProvider>(
-              create: (context) => NowPlayingProvider()),
-          ChangeNotifierProvider<PopularProvider>(
-              create: (context) => PopularProvider()),
-          ChangeNotifierProvider<TopRatedProvider>(
-              create: (context) => TopRatedProvider()),
-          ChangeNotifierProvider<ConnectivityProvider>(
-              create: (context) => ConnectivityProvider()),
-          ChangeNotifierProvider<MovieDetailsProvider>(
-              create: (context) => MovieDetailsProvider()),
-        ],
-        child: MaterialApp(
-          title: Strings.appTitle,
-          theme: AppTheme.darkTheme,
-          debugShowCheckedModeBanner: false,
-          home: const HomePage(),
-        ));
+      providers: [
+        ChangeNotifierProvider<NowPlayingProvider>(
+            create: (context) => NowPlayingProvider()),
+        ChangeNotifierProvider<PopularProvider>(
+            create: (context) => PopularProvider()),
+        ChangeNotifierProvider<TopRatedProvider>(
+            create: (context) => TopRatedProvider()),
+        ChangeNotifierProvider<ConnectivityProvider>(
+            create: (context) => ConnectivityProvider()),
+        ChangeNotifierProvider<MovieDetailsProvider>(
+            create: (context) => MovieDetailsProvider()),
+        ChangeNotifierProvider<SearchProvider>(
+            create: (context) => SearchProvider()),
+        ChangeNotifierProvider<FavoriteProvider>(
+            create: (context) => FavoriteProvider()),
+      ],
+      child: Sizer(
+        builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            title: Strings.appTitle,
+            theme: AppTheme.darkTheme,
+            debugShowCheckedModeBanner: false,
+            home: const HomePage(),
+          );
+        },
+      ),
+    );
   }
 }

@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moviespot/constants/strings.dart';
+import 'package:moviespot/view/pages/favorite_page.dart';
 import 'package:moviespot/view/pages/now_playing.dart';
 import 'package:moviespot/view/pages/popular_movies.dart';
+import 'package:moviespot/view/pages/search_page.dart';
 import 'package:moviespot/view/pages/top_rated_movies.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +26,8 @@ class _HomePageState extends State<HomePage>
   late TabController tabController;
   final List<Widget> _pages = [
     MovieList(),
-    Container(color: Colors.blue),
-    Container(color: Colors.green),
+    SearchPage(),
+    FavoritePage(),
     Container(color: Colors.yellow),
   ];
   final List<Tab> _tabs = const [
@@ -41,6 +45,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    log("---> home page build <-------");
     return Scaffold(
       bottomNavigationBar: TabBar(
         controller: tabController,

@@ -19,6 +19,16 @@ class API {
     final res = await tmdb.v3.movies.getImages(movieId);
   }
 
+  static Future<List<MovieModel>> getSearchMovie(String movieName) async {
+    List<MovieModel> movies = <MovieModel>[];
+    final res = await tmdb.v3.search.queryMovies(movieName);
+    List<dynamic> list = res["results"];
+    for (var element in list) {
+      movies.add(MovieModel.fromJson(element));
+    }
+    return movies;
+  }
+
   static Future<CastModel> getCasting(int movieId) async {
     final res = await tmdb.v3.movies.getCredits(movieId);
     return CastModel.fromJson(res as Map<String, dynamic>);

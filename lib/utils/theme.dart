@@ -5,6 +5,7 @@ import '../constants/colors.dart';
 
 class AppTheme {
   static  ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
     fontFamily: GoogleFonts.openSans().fontFamily,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.black,

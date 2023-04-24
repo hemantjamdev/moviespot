@@ -22,6 +22,7 @@ class MovieList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+            //  Search(),
               const Text(
                 "Now Showing",
                 style: TextStyle(fontSize: 24),
