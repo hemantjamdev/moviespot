@@ -45,11 +45,11 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     log("---> home page build <-------");
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+     /* floatingActionButton: FloatingActionButton(
         onPressed: (){
          // API.getMovieDetails();
         },
-      ),
+      ),*/
       bottomNavigationBar: TabBar(
         controller: tabController,
         tabs: _tabs,

@@ -86,7 +86,7 @@ class SliderImage extends StatelessWidget {
                 Text(
                   movie.voteAverage.toString(),
                   style: const TextStyle(
-                      //color: Colors.white,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),
@@ -101,6 +101,7 @@ class SliderImage extends StatelessWidget {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
+                color: Colors.white
               ),
             ),
           ),
