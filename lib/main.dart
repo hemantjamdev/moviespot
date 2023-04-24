@@ -16,7 +16,7 @@ import 'provider/now_playing_provider.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((value) => runApp(const MovieSpot()));
 }
 
@@ -41,15 +41,20 @@ class MovieSpot extends StatelessWidget {
             create: (context) => SearchProvider()),
         ChangeNotifierProvider<FavoriteProvider>(
             create: (context) => FavoriteProvider()),
+        ChangeNotifierProvider<AppTheme>(
+            create: (context) => AppTheme()),
       ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
-          return MaterialApp(
-            title: Strings.appTitle,
-            theme: AppTheme.darkTheme,
-            debugShowCheckedModeBanner: false,
-            home: const HomePage(),
-          );
+          return Consumer<AppTheme>(builder: (context, AppTheme theme, child) {
+            return MaterialApp(
+             // themeMode: theme.themeMode,
+              title: Strings.appTitle,
+              theme: theme.appTheme,
+              debugShowCheckedModeBanner: false,
+              home: const HomePage(),
+            );
+          });
         },
       ),
     );

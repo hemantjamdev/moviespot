@@ -12,6 +12,7 @@ import 'package:moviespot/view/pages/top_rated_movies.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/inernet_connectivity.dart';
+import '../../utils/theme.dart';
 import 'movie_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,7 +53,23 @@ class _HomePageState extends State<HomePage>
         tabs: _tabs,
         indicatorColor: Colors.transparent,
       ),
-      appBar: AppBar(title: const Text(Strings.appTitle)),
+      appBar: AppBar(
+        title: const Text(Strings.appTitle),
+        actions: [
+          Consumer(
+            builder: (context, AppTheme theme, child) {
+              return IconButton(
+                onPressed: () {
+                  theme.changeTheme(!theme.isDarkTheme);
+                },
+                icon: theme.isDarkTheme
+                    ? Icon(Icons.light_mode)
+                    : Icon(Icons.dark_mode),
+              );
+            },
+          )
+        ],
+      ),
       body: Consumer<ConnectivityProvider>(
           builder: (context, ConnectivityProvider provider, child) {
         if (provider.isConnected) {

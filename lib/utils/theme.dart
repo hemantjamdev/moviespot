@@ -3,8 +3,32 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/colors.dart';
 
-class AppTheme {
-  static  ThemeData darkTheme = ThemeData(
+class AppTheme extends ChangeNotifier {
+  bool isDarkTheme = false;
+  ThemeData appTheme = ThemeData(
+    useMaterial3: true,
+    fontFamily: GoogleFonts.openSans().fontFamily,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: AppColors.white,
+    appBarTheme: const AppBarTheme(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: AppColors.white,
+    ),
+  );
+
+  ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+    fontFamily: GoogleFonts.openSans().fontFamily,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: AppColors.white,
+    appBarTheme: const AppBarTheme(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: AppColors.white,
+    ),
+  );
+  ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     fontFamily: GoogleFonts.openSans().fontFamily,
     brightness: Brightness.dark,
@@ -15,4 +39,15 @@ class AppTheme {
       backgroundColor: AppColors.black,
     ),
   );
+
+  changeTheme(bool dark) {
+    if (dark) {
+      appTheme = darkTheme;
+      isDarkTheme = true;
+    } else {
+      appTheme = lightTheme;
+      isDarkTheme = false;
+    }
+    notifyListeners();
+  }
 }

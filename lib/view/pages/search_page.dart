@@ -91,7 +91,7 @@ Widget searchCard(MovieModel movie) {
                   maxLines: 2,
                   style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
-                    color: Colors.white,
+                   // color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -104,7 +104,7 @@ Widget searchCard(MovieModel movie) {
                   Text(
                     movie.voteAverage.toString(),
                     style: const TextStyle(
-                      color: Colors.white,
+                     // color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -114,7 +114,7 @@ Widget searchCard(MovieModel movie) {
               Text(
                 movie.releaseDate.toString(),
                 style: const TextStyle(
-                  color: Colors.white,
+                //  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                 ),
