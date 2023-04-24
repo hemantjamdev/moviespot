@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviespot/view/widgets/poster.dart';
 
-import '../../model/movie_details_model.dart';
+import '../../model/movie_model.dart';
 
 class ViewAll extends StatelessWidget {
   final List<MovieModel> movies;

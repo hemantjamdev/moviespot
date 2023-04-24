@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:moviespot/constants/api.dart';
 import 'package:moviespot/constants/strings.dart';
 
-import '../model/movie_details_model.dart';
+import '../model/movie_model.dart';
 
 class NowPlayingProvider extends ChangeNotifier {
   int index=0;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:moviespot/model/movie_details_model.dart';
+import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/provider/search_provider.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +61,7 @@ class SearchPage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => MovieDetails(
-                                      movie: movie,
+                                      movieId: movie.id!,
                                       heroTag: UniqueKey(),
                                     ),
                                   ),
@@ -138,16 +138,15 @@ Widget searchCard(MovieModel movie) {
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
               ),
-              SizedBox(
-                height: 5,
-              ),
+              SizedBox(height: 5),
               Container(
-                  width: 44.w,
-                  child: Text(
-                    movie.overview.toString(),
-                    maxLines: 5,
-                    overflow: TextOverflow.ellipsis,
-                  )),
+                width: 44.w,
+                child: Text(
+                  movie.overview.toString(),
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
         ),

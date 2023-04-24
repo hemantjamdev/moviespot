@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviespot/constants/strings.dart';
-import 'package:moviespot/model/movie_details_model.dart';
+import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,7 +22,7 @@ class Poster extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) =>
-                  MovieDetails(movie: movie, heroTag: heroKey),
+                  MovieDetails(movieId: movie.id!, heroTag: heroKey),
             ),
           );
         },

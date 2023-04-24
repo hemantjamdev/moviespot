@@ -4,7 +4,7 @@ import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../constants/strings.dart';
-import '../../model/movie_details_model.dart';
+import '../../model/movie_model.dart';
 import '../../provider/now_playing_provider.dart';
 
 class NowPlaying extends StatelessWidget {
@@ -27,7 +27,7 @@ class NowPlaying extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                MovieDetails(movie: e, heroTag: heroKey),
+                                MovieDetails(movieId: e.id!, heroTag: heroKey),
                           ),
                         );
                       },

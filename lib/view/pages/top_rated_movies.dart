@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviespot/model/movie_details_model.dart';
+import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
 import 'package:moviespot/view/pages/view_all_page.dart';
 import 'package:moviespot/view/widgets/poster.dart';

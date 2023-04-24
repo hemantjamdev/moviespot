@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:moviespot/constants/strings.dart';
-import 'package:moviespot/model/movie_details_model.dart';
+import 'package:moviespot/model/movie_model.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../model/cast_model.dart';
@@ -15,10 +17,17 @@ class API {
         showWarningLogs: true),
   );
 
-  static getMovieImages(int movieId) async {
-    final res = await tmdb.v3.movies.getImages(movieId);
+  /// get movie details
+  static getMovieDetails(int movieId) async {
+    return await tmdb.v3.movies.getDetails(movieId);
   }
 
+  /// get movie images
+  static getMovieImages(int movieId) async {
+    return await tmdb.v3.movies.getImages(movieId);
+  }
+
+  /// get movie by searched name
   static Future<List<MovieModel>> getSearchMovie(String movieName) async {
     List<MovieModel> movies = <MovieModel>[];
     final res = await tmdb.v3.search.queryMovies(movieName);
@@ -29,11 +38,13 @@ class API {
     return movies;
   }
 
+  /// get cast and credits(crew/casts) by movie id
   static Future<CastModel> getCasting(int movieId) async {
     final res = await tmdb.v3.movies.getCredits(movieId);
     return CastModel.fromJson(res as Map<String, dynamic>);
   }
 
+  /// get movie list by category
   static Future<List<MovieModel>> getMovieList(String type) async {
     List<MovieModel> movies = <MovieModel>[];
     switch (type) {
