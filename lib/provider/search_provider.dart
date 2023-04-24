@@ -20,4 +20,9 @@ class SearchProvider extends ChangeNotifier {
     movieModel = await API.getSearchMovie(movieName);
     notifyListeners();
   }
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 }

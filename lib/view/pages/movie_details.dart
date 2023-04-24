@@ -33,15 +33,9 @@ class _MovieDetailsState extends State<MovieDetails> {
       body: Consumer<MovieDetailsProvider>(
         builder: (context, MovieDetailsProvider provider, child) {
           return MovieDetailsPage(
-              posterUrl: Strings.imageBase + widget.movie.posterPath!,
-              title: widget.movie.title!,
-              plot: widget.movie.overview!,
-              genre: widget.movie.originalLanguage!,
-              rating: widget.movie.voteAverage!.toString(),
-              releaseDate: widget.movie.releaseDate!,
-              cast: provider.casts,
-              crew: provider.casts,
-              screenshots: const []);
+            movie: widget.movie,
+            cast: provider.casts,
+          );
         },
       ),
     );
@@ -49,28 +43,12 @@ class _MovieDetailsState extends State<MovieDetails> {
 }
 
 class MovieDetailsPage extends StatelessWidget {
-  final String posterUrl;
-  final String title;
-  final String plot;
-  final String genre;
-  final String rating;
-  final String releaseDate;
-  final List<Cast> cast;
-  final List<Cast> crew;
-  final List<dynamic> screenshots;
+  MovieModel movie;
+  List<Cast> cast;
 
-  const MovieDetailsPage({
-    Key? key,
-    required this.posterUrl,
-    required this.title,
-    required this.plot,
-    required this.genre,
-    required this.rating,
-    required this.releaseDate,
-    required this.cast,
-    required this.crew,
-    required this.screenshots,
-  }) : super(key: key);
+  MovieDetailsPage({required this.movie, required this.cast});
+
+  List<dynamic> screenshots = [];
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +57,7 @@ class MovieDetailsPage extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.network(posterUrl),
+              Image.network(Strings.imageBase + movie.posterPath.toString()),
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -87,7 +65,7 @@ class MovieDetailsPage extends StatelessWidget {
                   color: Colors.black.withOpacity(0.5),
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    title,
+                    movie.title.toString(),
                     style: const TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -104,17 +82,17 @@ class MovieDetailsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Release date: $releaseDate',
+                  'Release date: ${movie.releaseDate}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Rating: $rating',
+                  'Rating: ${movie.voteAverage}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Genre: $genre',
+                  'Genre: ${movie.genreIds}',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
@@ -127,7 +105,7 @@ class MovieDetailsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  plot,
+                  movie.overview.toString(),
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
@@ -184,7 +162,7 @@ class MovieDetailsPage extends StatelessWidget {
                   height: 120,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: crew.length,
+                    itemCount: cast.length,
                     itemBuilder: (BuildContext context, int index) {
                       return cast[index].profilePath != null
                           ? Column(

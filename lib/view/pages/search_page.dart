@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moviespot/model/movie_details_model.dart';
 import 'package:moviespot/provider/search_provider.dart';
-import 'package:moviespot/view/widgets/poster.dart';
+import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,43 +16,70 @@ class SearchPage extends StatelessWidget {
     return Consumer<SearchProvider>(
       builder: (context, SearchProvider provider, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: provider.searchController,
-                  decoration: const InputDecoration(hintText: 'Search movies'),
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      provider.searchMovie(provider.searchController.text);
-                    } else if (provider.searchController.text.isEmpty) {
-                      provider.clearList();
-                    }
-                  },
-                  onSubmitted: (value) {
-                    if (value.isNotEmpty) {
-                      provider.searchMovie(provider.searchController.text);
-                    } else if (provider.searchController.text.isEmpty) {
-                      provider.clearList();
-                    }
-                  },
+          body: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.0),
+                    border: Border.all(color: Colors.purple, width: 3)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4.0, horizontal: 20),
+                  child: TextField(
+                    controller: provider.searchController,
+                    decoration: const InputDecoration(
+                      hintText: 'Search movies',
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        provider.searchMovie(provider.searchController.text);
+                      } else if (provider.searchController.text.isEmpty) {
+                        provider.clearList();
+                      }
+                    },
+                    onSubmitted: (value) {
+                      if (value.isNotEmpty) {
+                        provider.searchMovie(provider.searchController.text);
+                      } else if (provider.searchController.text.isEmpty) {
+                        provider.clearList();
+                      }
+                    },
+                  ),
                 ),
               ),
-            ),
+              provider.movieModel.isNotEmpty
+                  ? Expanded(
+                      child: ListView.builder(
+                        itemCount: provider.movieModel.length,
+                        itemBuilder: (context, int index) {
+                          MovieModel movie = provider.movieModel[index];
+                          return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetails(
+                                      movie: movie,
+                                      heroTag: UniqueKey(),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: searchCard(movie));
+                        },
+                      ),
+                    )
+                  : Expanded(
+                      child: SizedBox(
+                        height: double.infinity,
+                        width: double.infinity,
+                        child: Lottie.asset(Strings.searchImage),
+                      ),
+                    ),
+            ],
           ),
-          body: provider.movieModel.isNotEmpty
-              ? ListView.builder(
-                  itemCount: provider.movieModel.length,
-                  itemBuilder: (context, int index) {
-                    MovieModel movie = provider.movieModel[index];
-                    return searchCard(movie);
-                  })
-              : SizedBox(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: Lottie.asset("assets/animation/search.json"),
-                ),
         );
       },
     );
@@ -70,7 +95,6 @@ Widget searchCard(MovieModel movie) {
         Container(
           height: 30.h,
           width: 50.w,
-          // margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
           decoration: BoxDecoration(
             image: DecorationImage(
                 image: NetworkImage(
@@ -84,14 +108,13 @@ Widget searchCard(MovieModel movie) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: 40.w,
                 child: Text(
                   movie.title.toString(),
                   maxLines: 2,
                   style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
-                   // color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -104,7 +127,6 @@ Widget searchCard(MovieModel movie) {
                   Text(
                     movie.voteAverage.toString(),
                     style: const TextStyle(
-                     // color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -113,12 +135,19 @@ Widget searchCard(MovieModel movie) {
               ),
               Text(
                 movie.releaseDate.toString(),
-                style: const TextStyle(
-                //  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
               ),
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                  width: 44.w,
+                  child: Text(
+                    movie.overview.toString(),
+                    maxLines: 5,
+                    overflow: TextOverflow.ellipsis,
+                  )),
             ],
           ),
         ),

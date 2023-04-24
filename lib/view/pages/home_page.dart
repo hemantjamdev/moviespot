@@ -1,18 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/view/pages/favorite_page.dart';
-import 'package:moviespot/view/pages/now_playing.dart';
-import 'package:moviespot/view/pages/popular_movies.dart';
 import 'package:moviespot/view/pages/search_page.dart';
-import 'package:moviespot/view/pages/top_rated_movies.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/inernet_connectivity.dart';
-import '../../utils/theme.dart';
+import '../../provider/theme_provider.dart';
 import 'movie_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,9 +22,9 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   final List<Widget> _pages = [
-    MovieList(),
-    SearchPage(),
-    FavoritePage(),
+    const MovieList(),
+    const SearchPage(),
+    const FavoritePage(),
     Container(color: Colors.yellow),
   ];
   final List<Tab> _tabs = const [
@@ -63,8 +59,8 @@ class _HomePageState extends State<HomePage>
                   theme.changeTheme(!theme.isDarkTheme);
                 },
                 icon: theme.isDarkTheme
-                    ? Icon(Icons.light_mode)
-                    : Icon(Icons.dark_mode),
+                    ? const Icon(Icons.light_mode)
+                    : const Icon(Icons.dark_mode),
               );
             },
           )
@@ -78,7 +74,7 @@ class _HomePageState extends State<HomePage>
           return SizedBox(
             height: double.infinity,
             width: double.infinity,
-            child: Lottie.asset("assets/animation/disconnect.json"),
+            child: Lottie.asset(Strings.noInternet),
           );
         }
       }),

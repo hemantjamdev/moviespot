@@ -16,4 +16,8 @@ class Strings {
   static const appTitle = "MovieSpot";
 
   /// hero tags
+/// assets name
+static const String searchImage="assets/animation/search.json";
+static const String favoriteImage="assets/animation/favorite.json";
+static const String noInternet="assets/animation/disconnect.json";
 }

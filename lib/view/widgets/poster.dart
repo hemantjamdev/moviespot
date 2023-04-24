@@ -60,7 +60,7 @@ class MovieCard extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(6.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,6 @@ class MovieCard extends StatelessWidget {
                     Text(
                       movie.voteAverage.toString(),
                       style: const TextStyle(
-                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -80,36 +79,29 @@ class MovieCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 5),
-          Row(
+          const SizedBox(height: 5),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 50.w,
-                    child: Text(
-                      movie.title.toString(),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: const TextStyle(
-                      //  color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
+              SizedBox(
+                width: 50.w,
+                child: Text(
+                  movie.title.toString(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
-                  Text(
-                    movie.releaseDate.toString(),
-                    style: const TextStyle(
-                    //  color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
+                ),
+              ),
+              Text(
+                movie.releaseDate.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
               ),
             ],
           )

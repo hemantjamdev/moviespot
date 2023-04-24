@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:moviespot/constants/strings.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -16,10 +17,10 @@ class FavoritePage extends StatelessWidget {
               child: SizedBox(
                 height: double.infinity,
                 width: double.infinity,
-                child: Lottie.asset("assets/animation/favorite.json"),
+                child: Lottie.asset(Strings.favoriteImage),
               ),
             ),
-            Text("Your Favorites will be listed here ")
+            const Text("Your Favorites will be listed here ")
           ],
         )
     );
