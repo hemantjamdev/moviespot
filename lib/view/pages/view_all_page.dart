@@ -14,16 +14,14 @@ class ViewAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Container(
-        child: GridView.builder(
-            itemCount: movies.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, int index) {
-              MovieModel movie = movies[index];
-              return Poster(movie: movie);
-            }),
-      ),
+      body: GridView.builder(
+          itemCount: movies.length,
+          gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (context, int index) {
+            MovieModel movie = movies[index];
+            return Poster(movie: movie);
+          }),
     );
   }
 }

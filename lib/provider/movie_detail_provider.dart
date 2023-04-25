@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:moviespot/model/cast_model.dart';
 
@@ -43,12 +41,4 @@ class MovieDetailsProvider extends ChangeNotifier {
     screenShotModel = ScreenShotModel.fromJson(res as Map<String, dynamic>);
     notifyListeners();
   }
-
-/*@override
-  void dispose() {
-    castModel.crew?.clear();
-    castModel.cast?.clear();
-    log("dispose caleeddddd");
-    super.dispose();
-  }*/
 }

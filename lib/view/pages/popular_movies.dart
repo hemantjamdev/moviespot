@@ -6,6 +6,8 @@ import 'package:moviespot/view/widgets/poster.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../widgets/loading.dart';
+
 class PopularMovies extends StatelessWidget {
   const PopularMovies({super.key});
 
@@ -29,7 +31,7 @@ class PopularMovies extends StatelessWidget {
               handleNavigate(context, provider.movieModel);
             },
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -57,7 +59,17 @@ class PopularMovies extends StatelessWidget {
                       MovieModel movie = provider.movieModel[index];
                       return Poster(movie: movie);
                     })
-                : const SizedBox(),
+                : ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: shimmer(height: 30.h, width: 50.w),
+                      );
+                    },
+                  ),
           ),
         ],
       );

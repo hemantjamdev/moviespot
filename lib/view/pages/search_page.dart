@@ -138,8 +138,8 @@ Widget searchCard(MovieModel movie) {
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
               ),
-              SizedBox(height: 5),
-              Container(
+              const SizedBox(height: 5),
+              SizedBox(
                 width: 44.w,
                 child: Text(
                   movie.overview.toString(),

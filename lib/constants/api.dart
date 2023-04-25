@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/model/movie_model.dart';

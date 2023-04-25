@@ -70,9 +70,9 @@ class MovieCard extends StatelessWidget {
                     Text(
                       movie.voteAverage.toString(),
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.white),
                     ),
                   ],
                 ),

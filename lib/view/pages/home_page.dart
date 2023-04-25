@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:moviespot/constants/api.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/view/pages/favorite_page.dart';
 import 'package:moviespot/view/pages/search_page.dart';

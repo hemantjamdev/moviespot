@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
 import 'package:moviespot/view/pages/view_all_page.dart';
+import 'package:moviespot/view/widgets/loading.dart';
 import 'package:moviespot/view/widgets/poster.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -29,7 +30,7 @@ class TopRated extends StatelessWidget {
                 handleNavigate(context, provider.movieModel);
               },
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -47,7 +48,7 @@ class TopRated extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 300,
+              height: 35.h,
               child: provider.movieModel.isNotEmpty
                   ? ListView.builder(
                       shrinkWrap: true,
@@ -58,7 +59,17 @@ class TopRated extends StatelessWidget {
                         return Poster(movie: movie);
                       },
                     )
-                  : const SizedBox(),
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: shimmer(height: 30.h, width: 50.w),
+                        );
+                      },
+                    ),
             ),
           ],
         );
