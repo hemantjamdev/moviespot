@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/model/cast_model.dart';
 
 import '../constants/api.dart';
@@ -10,7 +11,16 @@ class MovieDetailsProvider extends ChangeNotifier {
   ScreenShotModel screenShotModel = ScreenShotModel();
   List<Cast> casts = <Cast>[];
   List<Crew> crew = <Crew>[];
+  List<Video> videos = <Video>[];
   MovieDetailsModel movieDetailsModel = MovieDetailsModel();
+
+  getVideos(int movieId) async {videos.clear();
+    List<dynamic> list = await API.getVideos(movieId);
+    for (var element in list) {
+      videos.add(Video.fromJson(element));
+    }
+    notifyListeners();
+  }
 
   getMovieDetail(int movieId) async {
     final res = await API.getMovieDetails(movieId);

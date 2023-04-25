@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
+import 'package:moviespot/view/widgets/rating.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -81,23 +82,7 @@ class SliderImage extends StatelessWidget {
           )),
       child: Stack(
         children: [
-          Positioned(
-            top: 8,
-            right: 8,
-            child: Row(
-              children: [
-                const Icon(Icons.star, color: Colors.amber),
-                const SizedBox(width: 4),
-                Text(
-                  movie.voteAverage.toString(),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ],
-            ),
-          ),
+          buildRating(rating: movie.voteAverage.toString()),
           Positioned(
             bottom: 30,
             right: 16,

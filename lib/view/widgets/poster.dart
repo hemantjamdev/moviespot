@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
+import 'package:moviespot/view/widgets/rating.dart';
 import 'package:sizer/sizer.dart';
 
 class Poster extends StatelessWidget {
@@ -59,24 +60,7 @@ class MovieCard extends StatelessWidget {
                   topRight: Radius.circular(15),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.star, color: Colors.amber),
-                    const SizedBox(width: 4),
-                    Text(
-                      movie.voteAverage.toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+              child: buildRating(rating: movie.voteAverage.toString()),
             ),
           ),
           const SizedBox(height: 5),
@@ -109,4 +93,6 @@ class MovieCard extends StatelessWidget {
       ),
     );
   }
+
+
 }

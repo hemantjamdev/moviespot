@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:moviespot/constants/api.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/view/pages/category.dart';
 import 'package:moviespot/view/pages/favorite_page.dart';
@@ -46,6 +47,11 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     log("---> home page build <-------");
     return Scaffold(
+     /* floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          API.testApi();
+        },
+      ),*/
       bottomNavigationBar: TabBar(
         controller: tabController,
         tabs: _tabs,

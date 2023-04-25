@@ -18,13 +18,16 @@ class API {
   );
 
   static testApi() async {
-    final res = await tmdb.v3.movies.getUpcoming();
+    final res = await tmdb.v3.movies.getVideos(238);
     log(res.toString());
   }
 
-  ///get upcoming movie list
-
-  ///get latest movies list
+  /// get youtube video clips
+  static Future<List> getVideos(int movieId) async {
+    final res = await tmdb.v3.movies.getVideos(movieId);
+    List<dynamic> list = res["results"];
+    return list;
+  }
 
   /// get movie details
   static getMovieDetails(int movieId) async {
@@ -56,44 +59,32 @@ class API {
   /// get movie list by category
   static Future<List<MovieModel>> getMovieList(String type) async {
     List<MovieModel> movies = <MovieModel>[];
+    late Map<dynamic, dynamic> res;
     switch (type) {
       /// now playing
       case Strings.nowPlaying:
-        Map<dynamic, dynamic> res = await tmdb.v3.movies.getNowPlaying();
-        List<dynamic> list = res["results"];
-        for (var element in list) {
-          movies.add(MovieModel.fromJson(element));
-        }
-        return movies;
+        res = await tmdb.v3.movies.getNowPlaying();
+        break;
 
       /// up-coming
       case Strings.upComing:
-        Map<dynamic, dynamic> res = await tmdb.v3.movies.getUpcoming();
-        List<dynamic> list = res["results"];
-        for (var element in list) {
-          movies.add(MovieModel.fromJson(element));
-        }
-        return movies;
+        res = await tmdb.v3.movies.getUpcoming();
+        break;
 
       /// popular
       case Strings.popular:
-        Map<dynamic, dynamic> res = await tmdb.v3.movies.getPopular();
-        List<dynamic> list = res["results"];
-        for (var element in list) {
-          movies.add(MovieModel.fromJson(element));
-        }
-        return movies;
+        res = await tmdb.v3.movies.getPopular();
+        break;
 
       /// top rated
       case Strings.topRated:
-        Map<dynamic, dynamic> res = await tmdb.v3.movies.getTopRated();
-        List<dynamic> list = res["results"];
-        for (var element in list) {
-          movies.add(MovieModel.fromJson(element));
-        }
-        return movies;
-      default:
-        return movies;
+        res = await tmdb.v3.movies.getTopRated();
+        break;
     }
+    List<dynamic> list = res["results"];
+    for (var element in list) {
+      movies.add(MovieModel.fromJson(element));
+    }
+    return movies;
   }
 }

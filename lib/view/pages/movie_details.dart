@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:moviespot/model/cast_model.dart';
+import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/provider/movie_detail_provider.dart';
 import 'package:moviespot/view/widgets/loading.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,7 @@ import 'package:sizer/sizer.dart';
 import '../../constants/strings.dart';
 import '../../model/movie_detail_model.dart';
 import '../../model/screen_shot_model.dart';
+import '../widgets/youtube.dart';
 
 class MovieDetails extends StatefulWidget {
   final int movieId;
@@ -30,6 +33,8 @@ class _MovieDetailsState extends State<MovieDetails> {
         .getImages(widget.movieId);
     Provider.of<MovieDetailsProvider>(context, listen: false)
         .getMovieDetail(widget.movieId);
+    Provider.of<MovieDetailsProvider>(context, listen: false)
+        .getVideos(widget.movieId);
     super.initState();
   }
 
@@ -47,6 +52,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   cast: provider.casts,
                   crew: provider.crew,
                   images: provider.screenShotModel,
+                  videos: provider.videos,
                 );
               } else {
                 return shimmer(height: 70.h, width: 100.w);
@@ -64,13 +70,15 @@ class MovieDetailsPage extends StatelessWidget {
   final List<Cast> cast;
   final List<Crew> crew;
   final ScreenShotModel images;
+  final List<Video> videos;
 
   const MovieDetailsPage(
       {super.key,
       required this.movie,
       required this.cast,
       required this.crew,
-      required this.images});
+      required this.images,
+      required this.videos});
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +110,15 @@ class MovieDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
+            /* Draggable(
+                child: Container(
+                  height: 100,
+                  width: 200,
+                  color: Colors.red,
+                ),
+                feedback: Container( height: 100,
+                  width: 200,
+                  color: Colors.green,)),*/
           ],
         ),
         const SizedBox(height: 16),
@@ -178,6 +195,52 @@ class MovieDetailsPage extends StatelessWidget {
                             imageUrl: crew[index].profilePath ?? "",
                             name: crew[index].name ?? "")
                         : const SizedBox();
+                  },
+                ),
+              ),
+              const Text(
+                'video clips:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 15.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: videos.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        showDialog(
+                            barrierColor: Colors.transparent,
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (context) {
+                              return YouTube(videoId: videos[index].key ?? "");
+                            });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
+                        color: Colors.black,
+                        width: 15.h,
+                        child: Stack(
+                          children: [
+                            Lottie.asset(Strings.playButton, animate: false),
+                            Text(
+                              videos[index].name.toString(),
+                              style: TextStyle(
+                                  fontSize: 10.sp, color: Colors.white),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   },
                 ),
               ),

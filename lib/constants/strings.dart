@@ -22,6 +22,7 @@ class Strings {
   static const String searchImage = "assets/animation/search.json";
   static const String favoriteImage = "assets/animation/favorite.json";
   static const String noInternet = "assets/animation/disconnect.json";
+  static const String playButton = "assets/animation/play.json";
 
   /// category names
   static const List<String> categories = [
