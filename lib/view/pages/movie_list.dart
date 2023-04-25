@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moviespot/view/pages/now_playing.dart';
 import 'package:moviespot/view/pages/popular_movies.dart';
 import 'package:moviespot/view/pages/top_rated_movies.dart';
+import 'package:moviespot/view/pages/upcoming_movies.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({super.key});
@@ -23,6 +24,8 @@ class MovieList extends StatelessWidget {
           NowPlaying(),
           const TopRated(),
           const PopularMovies(),
+          const UpComing(),
+
         ],
       ),
     );

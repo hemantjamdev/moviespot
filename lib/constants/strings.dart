@@ -8,6 +8,8 @@ class Strings {
   static const popular = "popular";
   static const nowPlaying = "nowPlaying";
   static const topRated = "topRated";
+  static const upComing = "up-coming";
+  static const latest = "latest";
 
   /// image url
   static const imageBase = "https://image.tmdb.org/t/p/w500";
@@ -16,8 +18,32 @@ class Strings {
   static const appTitle = "MovieSpot";
 
   /// hero tags
-/// assets name
-static const String searchImage="assets/animation/search.json";
-static const String favoriteImage="assets/animation/favorite.json";
-static const String noInternet="assets/animation/disconnect.json";
+  /// assets name
+  static const String searchImage = "assets/animation/search.json";
+  static const String favoriteImage = "assets/animation/favorite.json";
+  static const String noInternet = "assets/animation/disconnect.json";
+
+  /// category names
+  static const List<String> categories = [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Music",
+    "Mystery",
+    "Romance",
+    "Science Fiction",
+    "Thriller",
+    "TV",
+    "Movie",
+    "War",
+    "Western",
+  ];
 }

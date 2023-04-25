@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/model/movie_model.dart';
@@ -15,6 +16,15 @@ class API {
         showInfoLogs: true,
         showWarningLogs: true),
   );
+
+  static testApi() async {
+    final res = await tmdb.v3.movies.getUpcoming();
+    log(res.toString());
+  }
+
+  ///get upcoming movie list
+
+  ///get latest movies list
 
   /// get movie details
   static getMovieDetails(int movieId) async {
@@ -50,6 +60,15 @@ class API {
       /// now playing
       case Strings.nowPlaying:
         Map<dynamic, dynamic> res = await tmdb.v3.movies.getNowPlaying();
+        List<dynamic> list = res["results"];
+        for (var element in list) {
+          movies.add(MovieModel.fromJson(element));
+        }
+        return movies;
+
+      /// up-coming
+      case Strings.upComing:
+        Map<dynamic, dynamic> res = await tmdb.v3.movies.getUpcoming();
         List<dynamic> list = res["results"];
         for (var element in list) {
           movies.add(MovieModel.fromJson(element));

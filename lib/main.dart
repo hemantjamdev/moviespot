@@ -11,7 +11,9 @@ import 'package:moviespot/provider/theme_provider.dart';
 import 'package:moviespot/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'provider/category_provider.dart';
 import 'provider/now_playing_provider.dart';
+import 'provider/upcoming_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +44,9 @@ class MovieSpot extends StatelessWidget {
         ChangeNotifierProvider<FavoriteProvider>(
             create: (context) => FavoriteProvider()),
         ChangeNotifierProvider<AppTheme>(create: (context) => AppTheme()),
+        ChangeNotifierProvider<UpComingProvider>(create: (context) => UpComingProvider()),
+        ChangeNotifierProvider<CategoryProvider>(
+            create: (context) => CategoryProvider()),
       ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
