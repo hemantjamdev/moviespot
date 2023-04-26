@@ -75,7 +75,7 @@ class SliderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(Strings.imageBase + movie.backdropPath!),

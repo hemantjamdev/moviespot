@@ -11,7 +11,6 @@ import 'package:moviespot/view/pages/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'provider/category_provider.dart';
-import 'provider/latest_provider.dart';
 import 'provider/now_playing_provider.dart';
 import 'provider/upcoming_provider.dart';
 

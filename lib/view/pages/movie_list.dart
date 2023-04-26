@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moviespot/view/pages/latest_movies.dart';
 import 'package:moviespot/view/pages/now_playing.dart';
 import 'package:moviespot/view/pages/popular_movies.dart';
 import 'package:moviespot/view/pages/top_rated_movies.dart';

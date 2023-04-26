@@ -10,17 +10,15 @@ class CategoryPage extends StatelessWidget {
     return Scaffold(
       body: Consumer<CategoryProvider>(
           builder: (context, CategoryProvider provider, child) {
-        return Container(
-          child: GridView.builder(
-              itemCount: 10,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, int index) {
-                return Card(
-                  child: Text("action"),
-                );
-              }),
-        );
+        return GridView.builder(
+            itemCount: 10,
+            gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemBuilder: (context, int index) {
+              return const Card(
+                child: Text("action"),
+              );
+            });
       }),
     );
   }

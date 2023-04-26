@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -93,32 +92,37 @@ class MovieDetailsPage extends StatelessWidget {
                   ? shimmer(height: 70.h, width: 100.w)
                   : Image.network(
                       Strings.imageBase + movie.posterPath.toString(),
+                      fit: BoxFit.cover,
                     ),
             ),
             Positioned(
               bottom: 0,
               child: Container(
-                width: MediaQuery.of(context).size.width,
-                color: Colors.black.withOpacity(0.5),
                 padding: const EdgeInsets.all(16),
-                child: Text(
-                  movie.title.toString(),
-                  style: TextStyle(
-                    fontSize: 24.sp,
-                    color: Colors.white,
-                  ),
+                width: 100.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 70.w,
+                      child: Text(
+                        movie.title.toString(),
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          color: Colors.white,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        maxLines: 1,
+                      ),
+                    ),
+                    FloatingActionButton(
+                      onPressed: () {},
+                      child: Lottie.asset(Strings.playButton, animate: false),
+                    )
+                  ],
                 ),
               ),
             ),
-            /* Draggable(
-                child: Container(
-                  height: 100,
-                  width: 200,
-                  color: Colors.red,
-                ),
-                feedback: Container( height: 100,
-                  width: 200,
-                  color: Colors.green,)),*/
           ],
         ),
         const SizedBox(height: 16),
@@ -127,17 +131,41 @@ class MovieDetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text("Original Title : ",
+                  style: TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
               Text(
-                'Release date: ${movie.releaseDate}',
+                movie.title ?? "",
+                style: const TextStyle(fontSize: 12),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Release date: ',
+                style:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                ' ${movie.releaseDate}',
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Rating: ${movie.voteAverage}',
-                style: const TextStyle(fontSize: 16),
+              const Text('Rating: ',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              //  const SizedBox(height: 8),
+              Row(
+                children: [
+                  const Icon(Icons.star, color: Colors.amber),
+                  const SizedBox(width: 5),
+                  Text(movie.voteAverage.toString()),
+                  const SizedBox(height: 8),
+                ],
               ),
+
               //const SizedBox(height: 8),
-              const Text('Genre: ', style: TextStyle(fontSize: 16)),
+              const Text('Genre: ',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               movie.genres != null ? buildGenre() : const SizedBox(),
               // const SizedBox(height: 16),
               const Text(
@@ -206,44 +234,7 @@ class MovieDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              SizedBox(
-                height: 15.h,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: videos.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return InkWell(
-                      onTap: () {
-                        showDialog(
-                            barrierColor: Colors.transparent,
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (context) {
-                              return YouTube(videoId: videos[index].key ?? "");
-                            });
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(5),
-                        padding: EdgeInsets.all(5),
-                        color: Colors.black,
-                        width: 15.h,
-                        child: Stack(
-                          children: [
-                            Lottie.asset(Strings.playButton, animate: false),
-                            Text(
-                              videos[index].name.toString(),
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: Colors.white),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              buildVideoClips(),
               const SizedBox(height: 16),
               const Text(
                 'Screenshots:',
@@ -258,6 +249,51 @@ class MovieDetailsPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  SizedBox buildVideoClips() {
+    return SizedBox(
+      height: 15.h,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: videos.length,
+        itemBuilder: (BuildContext context, int index) {
+          return videoWidget(
+              context, videos[index].key ?? "", videos[index].name ?? "");
+        },
+      ),
+    );
+  }
+
+  InkWell videoWidget(BuildContext context, String videoId, [String? name]) {
+    return InkWell(
+      onTap: () {
+        showDialog(
+            barrierColor: Colors.transparent,
+            barrierDismissible: false,
+            context: context,
+            builder: (context) {
+              return YouTube(videoId: videoId);
+            });
+      },
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
+        color: Colors.black,
+        width: 15.h,
+        child: Stack(
+          children: [
+            Lottie.asset(Strings.playButton, animate: false),
+            Text(
+              name ?? "",
+              style: TextStyle(fontSize: 10.sp, color: Colors.white),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
