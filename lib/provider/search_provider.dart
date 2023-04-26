@@ -5,10 +5,6 @@ import '../model/movie_model.dart';
 
 class SearchProvider extends ChangeNotifier {
   final TextEditingController searchController = TextEditingController();
-
-  // Future<List<String>> future = Future(() => null);
-  // bool isSearching = false;
-  // List<String> movies = ["test 1", "test2 ", "test3"];
   List<MovieModel> movieModel = <MovieModel>[];
 
   clearList() {
@@ -20,6 +16,7 @@ class SearchProvider extends ChangeNotifier {
     movieModel = await API.getSearchMovie(movieName);
     notifyListeners();
   }
+
   @override
   void dispose() {
     searchController.dispose();

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/strings.dart';
+import '../widgets/movie_card_list.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -50,27 +51,7 @@ class SearchPage extends StatelessWidget {
                 ),
               ),
               provider.movieModel.isNotEmpty
-                  ? Expanded(
-                      child: ListView.builder(
-                        itemCount: provider.movieModel.length,
-                        itemBuilder: (context, int index) {
-                          MovieModel movie = provider.movieModel[index];
-                          return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MovieDetails(
-                                      movieId: movie.id!,
-                                      heroTag: UniqueKey(),
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: searchCard(movie));
-                        },
-                      ),
-                    )
+                  ? Expanded(child: movieCardList(provider.movieModel))
                   : Expanded(
                       child: SizedBox(
                         height: double.infinity,
@@ -84,73 +65,4 @@ class SearchPage extends StatelessWidget {
       },
     );
   }
-}
-
-Widget searchCard(MovieModel movie) {
-  return Card(
-    elevation: 5,
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          height: 30.h,
-          width: 50.w,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(
-                    Strings.imageBase + movie.posterPath.toString()),
-                fit: BoxFit.cover),
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 40.w,
-                child: Text(
-                  movie.title.toString(),
-                  maxLines: 2,
-                  style: const TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              Row(
-                children: [
-                  const Icon(Icons.star, color: Colors.amber),
-                  const SizedBox(width: 4),
-                  Text(
-                    movie.voteAverage.toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-              Text(
-                movie.releaseDate.toString(),
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-              ),
-              const SizedBox(height: 5),
-              SizedBox(
-                width: 44.w,
-                child: Text(
-                  movie.overview.toString(),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
 }
