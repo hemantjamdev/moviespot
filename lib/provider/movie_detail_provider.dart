@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/model/cast_model.dart';
@@ -14,7 +15,8 @@ class MovieDetailsProvider extends ChangeNotifier {
   List<Video> videos = <Video>[];
   MovieDetailsModel movieDetailsModel = MovieDetailsModel();
 
-  getVideos(int movieId) async {videos.clear();
+  getVideos(int movieId) async {
+    videos.clear();
     List<dynamic> list = await API.getVideos(movieId);
     for (var element in list) {
       videos.add(Video.fromJson(element));

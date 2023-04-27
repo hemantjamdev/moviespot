@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moviespot/model/cast_model.dart';
@@ -10,6 +9,7 @@ import 'package:sizer/sizer.dart';
 import '../../constants/strings.dart';
 import '../../model/movie_detail_model.dart';
 import '../../model/screen_shot_model.dart';
+import '../../provider/favorite_provider.dart';
 import '../widgets/youtube.dart';
 
 class MovieDetails extends StatefulWidget {
@@ -39,7 +39,32 @@ class _MovieDetailsState extends State<MovieDetails> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<FavoriteProvider>(context, listen: false)
+        .checkForFav(widget.movieId);
     return Scaffold(
+      floatingActionButton: Consumer<FavoriteProvider>(
+        builder: (context, FavoriteProvider provider, child) {
+          return FloatingActionButton(
+            child: Icon(
+              Icons.favorite,
+              color: provider.isFav ? Colors.red : Colors.white,
+            ),
+            /*FutureBuilder(
+              future: provider.checkForFav(widget.movieId),
+              builder: (context, snapshot) {
+                return snapshot.hasData
+                    ?
+                    : Icon(Icons.favorite);
+              },
+            ),*/
+            onPressed: () async {
+              await provider.checkForFav(widget.movieId)
+                  ? provider.removeFav(widget.movieId)
+                  : provider.addFav(widget.movieId);
+            },
+          );
+        },
+      ),
       body: Consumer<MovieDetailsProvider>(
         builder: (context, MovieDetailsProvider provider, child) {
           return FutureBuilder(
@@ -132,8 +157,7 @@ class MovieDetailsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text("Original Title : ",
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               Text(
                 movie.title ?? "",
@@ -142,8 +166,7 @@ class MovieDetailsPage extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'Release date: ',
-                style:
-                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(
                 ' ${movie.releaseDate}',

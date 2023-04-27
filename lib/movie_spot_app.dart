@@ -36,8 +36,6 @@ class MovieSpot extends StatelessWidget {
         ChangeNotifierProvider<FavoriteProvider>(
             create: (context) => FavoriteProvider()),
         ChangeNotifierProvider<AppTheme>(create: (context) => AppTheme()),
-        /* ChangeNotifierProvider<LatestProvider>(
-            create: (context) => LatestProvider()),*/
         ChangeNotifierProvider<UpComingProvider>(
             create: (context) => UpComingProvider()),
         ChangeNotifierProvider<CategoryProvider>(

@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/model/movie_model.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -23,6 +21,9 @@ class API {
     // final res = await tmdb.v3.networks.getImages(networkId);
     // log(res.toString());
   }
+/*
+  static getMovieById(String movieId){}
+*/
 /*
   /// get category images
   static Future<List<String>> getMovieImage() async {

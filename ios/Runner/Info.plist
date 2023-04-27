@@ -6,6 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>app need permission to store favorite section related data</string>
 	<key>CFBundleDisplayName</key>
 	<string>Moviespot</string>
 	<key>CFBundleExecutable</key>

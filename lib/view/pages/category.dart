@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/provider/category_provider.dart';
-import 'package:moviespot/view/pages/search_page.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
-import '../../model/movie_model.dart';
 import '../widgets/loading.dart';
 import '../widgets/movie_card_list.dart';
-import 'movie_details.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -89,7 +84,7 @@ class MovieCard extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 movieName,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -121,7 +116,7 @@ class SearchByGenre extends StatelessWidget {
           builder: (context, CategoryProvider provider, child) {
             return provider.movieModel.isNotEmpty
                 ? movieCardList(provider.movieModel)
-                : SizedBox();
+                : const SizedBox();
           },
         ),
       ),

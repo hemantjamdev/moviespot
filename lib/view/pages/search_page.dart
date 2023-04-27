@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/provider/search_provider.dart';
-import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../constants/strings.dart';
 import '../widgets/movie_card_list.dart';
