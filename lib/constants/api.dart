@@ -17,7 +17,10 @@ class API {
         showWarningLogs: true),
   );
 
-  static testApi(String genre) async {}
+  /// get personDetails
+  static getPersonDetails(int id)async{
+    return await tmdb.v3.people.getDetails(id);
+  }
 
   /// get recommended movies
   static getRecommended(int movieId) async {

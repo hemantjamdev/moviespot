@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:moviespot/model/cast_model.dart';
 import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/provider/movie_detail_provider.dart';
+import 'package:moviespot/view/pages/person_details.dart';
 import 'package:moviespot/view/pages/recommanded.dart';
 import 'package:moviespot/view/pages/search_by_genre.dart';
 import 'package:moviespot/view/widgets/loading.dart';
@@ -232,8 +235,10 @@ class MovieDetailsPage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return cast[index].profilePath != null
                         ? buildCastCrew(
+                            context: context,
                             imageUrl: cast[index].profilePath ?? "",
-                            name: cast[index].name ?? "")
+                            name: cast[index].name ?? "",
+                            id: cast[index].id!)
                         : const SizedBox();
                   },
                 ),
@@ -255,8 +260,10 @@ class MovieDetailsPage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return crew[index].profilePath != null
                         ? buildCastCrew(
+                            context: context,
                             imageUrl: crew[index].profilePath ?? "",
-                            name: crew[index].name ?? "")
+                            name: crew[index].name ?? "",
+                            id: crew[index].id!)
                         : const SizedBox();
                   },
                 ),
@@ -287,7 +294,8 @@ class MovieDetailsPage extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
-              ),  const SizedBox(height: 8),
+              ),
+              const SizedBox(height: 8),
               Recommended(movieId: movie.id ?? 1)
             ],
           ),
@@ -348,35 +356,47 @@ class MovieDetailsPage extends StatelessWidget {
         });
   }
 
-  Widget buildCastCrew({required String imageUrl, required String name}) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 10.h,
-            height: 10.h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(Strings.imageBase + imageUrl),
-                fit: BoxFit.cover,
+  Widget buildCastCrew(
+      {required BuildContext context,
+      required String imageUrl,
+      required String name,
+      required int id}) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PersonDetails(personId: id)));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 10.h,
+              height: 10.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(Strings.imageBase + imageUrl),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: 10.h,
-            child: Text(
-              name,
-              style: TextStyle(fontSize: 8.sp),
-              overflow: TextOverflow.visible,
-              maxLines: 2,
+            const SizedBox(height: 8),
+            SizedBox(
+              width: 10.h,
+              child: Text(
+                name,
+                style: TextStyle(fontSize: 8.sp),
+                overflow: TextOverflow.visible,
+                maxLines: 2,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
