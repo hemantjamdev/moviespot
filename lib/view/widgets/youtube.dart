@@ -37,6 +37,11 @@ class _YouTubeState extends State<YouTube> {
   @override
   Widget build(BuildContext context) {
     return Center(
+      child: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
+      ),
+    );/*Center(
       child: SizedBox(
         child: Card(
           color: Colors.red[800],
@@ -54,16 +59,19 @@ class _YouTubeState extends State<YouTube> {
                     Icons.close,
                     color: Colors.white,
                   )),
-              Center(
-                child: YoutubePlayer(
-                  controller: _controller,
-                  showVideoProgressIndicator: true,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Center(
+                  child: YoutubePlayer(
+                    controller: _controller,
+                    showVideoProgressIndicator: true,
+                  ),
                 ),
               ),
             ],
           ),
         ),
       ),
-    );
+    );*/
   }
 }

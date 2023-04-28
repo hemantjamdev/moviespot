@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:moviespot/model/cast_model.dart';
 import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/provider/movie_detail_provider.dart';
+import 'package:moviespot/view/pages/search_by_genre.dart';
 import 'package:moviespot/view/widgets/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -10,6 +11,7 @@ import '../../constants/strings.dart';
 import '../../model/movie_detail_model.dart';
 import '../../model/screen_shot_model.dart';
 import '../../provider/favorite_provider.dart';
+import '../widgets/genre_chips.dart';
 import '../widgets/youtube.dart';
 
 class MovieDetails extends StatefulWidget {
@@ -123,13 +125,13 @@ class MovieDetailsPage extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                padding: const EdgeInsets.all(16),
-                width: 100.w,
+                padding: const EdgeInsets.all(8),
+                //margin: const EdgeInsets.all(20),
+                width: 90.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 70.w,
+                    Expanded(
                       child: Text(
                         movie.title.toString(),
                         style: TextStyle(
@@ -140,10 +142,20 @@ class MovieDetailsPage extends StatelessWidget {
                         maxLines: 1,
                       ),
                     ),
-                    FloatingActionButton(
-                      onPressed: () {},
-                      child: Lottie.asset(Strings.playButton, animate: false),
-                    )
+                    InkWell(
+                      onTap: () {
+                        playVideo(context, videos.first.key ?? "");
+                      },
+                      child: SizedBox(
+                        height: 15.h,
+                        width: 15.w,
+                        child: Lottie.asset(
+                          Strings.playButton,
+                          animate: false,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -186,11 +198,11 @@ class MovieDetailsPage extends StatelessWidget {
                 ],
               ),
 
-              //const SizedBox(height: 8),
               const Text('Genre: ',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              movie.genres != null ? buildGenre() : const SizedBox(),
-              // const SizedBox(height: 16),
+              movie.genres != null
+                  ? buildGenre(context, movie)
+                  : const SizedBox(),
               const Text(
                 'Plot:',
                 style: TextStyle(
@@ -292,13 +304,7 @@ class MovieDetailsPage extends StatelessWidget {
   InkWell videoWidget(BuildContext context, String videoId, [String? name]) {
     return InkWell(
       onTap: () {
-        showDialog(
-            barrierColor: Colors.transparent,
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return YouTube(videoId: videoId);
-            });
+        playVideo(context, videoId);
       },
       child: Container(
         margin: const EdgeInsets.all(5),
@@ -320,26 +326,20 @@ class MovieDetailsPage extends StatelessWidget {
     );
   }
 
-  SizedBox buildGenre() {
-    return SizedBox(
-      height: 8.h,
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: movie.genres?.length,
-          itemBuilder: (context, int index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
-              child: Chip(
-                label: Text(
-                  movie.genres![index].name.toString(),
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            );
-          }),
-    );
+  Future<dynamic> playVideo(BuildContext context, String videoId) {
+    return showDialog(
+        barrierColor: Colors.transparent,
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: YouTube(videoId: videoId),
+          );
+        });
   }
+
+
 
   Widget buildCastCrew({required String imageUrl, required String name}) {
     return Padding(

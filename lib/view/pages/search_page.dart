@@ -20,7 +20,7 @@ class SearchPage extends StatelessWidget {
                 margin: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25.0),
-                    border: Border.all(color: Colors.purple, width: 3)),
+                    border: Border.all(color: Colors.grey, width: 1)),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 4.0, horizontal: 20),
