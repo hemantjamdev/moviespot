@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:moviespot/model/cast_model.dart';
 import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/provider/movie_detail_provider.dart';
+import 'package:moviespot/view/pages/recommanded.dart';
 import 'package:moviespot/view/pages/search_by_genre.dart';
 import 'package:moviespot/view/widgets/loading.dart';
 import 'package:provider/provider.dart';
@@ -126,7 +127,6 @@ class MovieDetailsPage extends StatelessWidget {
               bottom: 0,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                //margin: const EdgeInsets.all(20),
                 width: 90.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -280,6 +280,15 @@ class MovieDetailsPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               images.backdrops != null ? buildScreenShots() : const SizedBox(),
+              const SizedBox(height: 8),
+              const Text(
+                'Recommended:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),  const SizedBox(height: 8),
+              Recommended(movieId: movie.id ?? 1)
             ],
           ),
         ),
@@ -338,8 +347,6 @@ class MovieDetailsPage extends StatelessWidget {
           );
         });
   }
-
-
 
   Widget buildCastCrew({required String imageUrl, required String name}) {
     return Padding(

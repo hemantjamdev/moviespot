@@ -6,7 +6,7 @@ import 'package:moviespot/view/widgets/rating.dart';
 import 'package:sizer/sizer.dart';
 
 class Poster extends StatelessWidget {
-  final MovieModel movie;
+  final MoviesListModel movie;
   final Key heroKey;
 
   Poster({Key? key, required this.movie})
@@ -34,7 +34,7 @@ class Poster extends StatelessWidget {
 }
 
 class MovieCard extends StatelessWidget {
-  final MovieModel movie;
+  final MoviesListModel movie;
 
   const MovieCard({super.key, required this.movie});
 

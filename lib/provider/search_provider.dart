@@ -5,7 +5,7 @@ import '../model/movie_model.dart';
 
 class SearchProvider extends ChangeNotifier {
   final TextEditingController searchController = TextEditingController();
-  List<MovieModel> movieModel = <MovieModel>[];
+  List<MoviesListModel> movieModel = <MoviesListModel>[];
 
   clearList() {
     movieModel.clear();

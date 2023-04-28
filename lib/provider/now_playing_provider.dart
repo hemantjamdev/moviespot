@@ -16,7 +16,7 @@ class NowPlayingProvider extends ChangeNotifier {
     getNowPlaying();
   }
 
-  List<MovieModel> movieModel = <MovieModel>[];
+  List<MoviesListModel> movieModel = <MoviesListModel>[];
 
   getNowPlaying() async {
     movieModel = await API.getMovieList(Strings.nowPlaying);

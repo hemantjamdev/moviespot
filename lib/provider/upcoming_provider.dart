@@ -9,7 +9,7 @@ class UpComingProvider extends ChangeNotifier {
     getUpComingMovie();
   }
 
-  List<MovieModel> movieModel = <MovieModel>[];
+  List<MoviesListModel> movieModel = <MoviesListModel>[];
 
   getUpComingMovie() async {
     movieModel = await API.getMovieList(Strings.upComing);

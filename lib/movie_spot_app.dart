@@ -3,6 +3,7 @@ import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/provider/favorite_provider.dart';
 import 'package:moviespot/provider/movie_detail_provider.dart';
 import 'package:moviespot/provider/popular_provider.dart';
+import 'package:moviespot/provider/recommended_provider.dart';
 import 'package:moviespot/provider/search_provider.dart';
 import 'package:moviespot/provider/top_rated_provider.dart';
 import 'package:moviespot/utils/inernet_connectivity.dart';
@@ -36,6 +37,8 @@ class MovieSpot extends StatelessWidget {
         ChangeNotifierProvider<FavoriteProvider>(
             create: (context) => FavoriteProvider()),
         ChangeNotifierProvider<AppTheme>(create: (context) => AppTheme()),
+        ChangeNotifierProvider<RecommendedProvider>(
+            create: (context) => RecommendedProvider()),
         ChangeNotifierProvider<UpComingProvider>(
             create: (context) => UpComingProvider()),
         ChangeNotifierProvider<CategoryProvider>(

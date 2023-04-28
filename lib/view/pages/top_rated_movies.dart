@@ -10,7 +10,7 @@ import 'package:sizer/sizer.dart';
 class TopRated extends StatelessWidget {
   const TopRated({super.key});
 
-  handleNavigate(BuildContext context, List<MovieModel> movie) {
+  handleNavigate(BuildContext context, List<MoviesListModel> movie) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -55,7 +55,7 @@ class TopRated extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: 10,
                       itemBuilder: (context, int index) {
-                        MovieModel movie = provider.movieModel[index];
+                        MoviesListModel movie = provider.movieModel[index];
                         return Poster(movie: movie);
                       },
                     )

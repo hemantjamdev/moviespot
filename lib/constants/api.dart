@@ -17,48 +17,28 @@ class API {
         showWarningLogs: true),
   );
 
-  static testApi(String genre) async {
-    // final res = await tmdb.v3.networks.getImages(networkId);
-    // log(res.toString());
-  }
-/*
-  static getMovieById(String movieId){}
-*/
-/*
-  /// get category images
-  static Future<List<String>> getMovieImage() async {
-    List<String> photosList = [];
-    const pexelsUrl = 'https://api.pexels.com/v1/search';
-    const apiKey =
-        '563492ad6f91700001000001e386ced37ce24f0bba8e9db72a117295'; // Replace with your own API key from Pexels
-    final dio = Dio();
-    final response = await dio.get(pexelsUrl,
-        queryParameters: {'query': 'movie', 'per_page': 20},
-        options: Options(headers: {'Authorization': apiKey}));
+  static testApi(String genre) async {}
 
-    if (response.statusCode == 200) {
-      final data = response.data;
-      //  log("-----> $data   <-------");
-      final photos = data['photos'];
-      List temp = photos;
-      temp.forEach((element) {
-        photosList.add(element['src']['small']);
-        log(element['src']['small']);
-      });
-      return photosList;
-    } else {
-      throw Exception('Failed to load image');
+  /// get recommended movies
+  static getRecommended(int movieId) async {
+    List<MoviesListModel> movies = <MoviesListModel>[];
+    movies.clear();
+    final res = await tmdb.v3.movies.getRecommended(movieId);
+    List<dynamic> list = res["results"];
+    for (var element in list) {
+      movies.add(MoviesListModel.fromJson(element));
     }
-  }*/
+    return movies;
+  }
 
   /// get movie by genre
   static getMovieByGenre(String genre) async {
-    List<MovieModel> movies = <MovieModel>[];
+    List<MoviesListModel> movies = <MoviesListModel>[];
     movies.clear();
     final res = await tmdb.v3.discover.getMovies(withGenres: genre);
     List<dynamic> list = res["results"];
     for (var element in list) {
-      movies.add(MovieModel.fromJson(element));
+      movies.add(MoviesListModel.fromJson(element));
     }
     return movies;
   }
@@ -81,12 +61,12 @@ class API {
   }
 
   /// get movie by searched name
-  static Future<List<MovieModel>> getSearchMovie(String movieName) async {
-    List<MovieModel> movies = <MovieModel>[];
+  static Future<List<MoviesListModel>> getSearchMovie(String movieName) async {
+    List<MoviesListModel> movies = <MoviesListModel>[];
     final res = await tmdb.v3.search.queryMovies(movieName);
     List<dynamic> list = res["results"];
     for (var element in list) {
-      movies.add(MovieModel.fromJson(element));
+      movies.add(MoviesListModel.fromJson(element));
     }
     return movies;
   }
@@ -98,8 +78,8 @@ class API {
   }
 
   /// get movie list by category
-  static Future<List<MovieModel>> getMovieList(String type) async {
-    List<MovieModel> movies = <MovieModel>[];
+  static Future<List<MoviesListModel>> getMovieList(String type) async {
+    List<MoviesListModel> movies = <MoviesListModel>[];
     late Map<dynamic, dynamic> res;
     try {
       switch (type) {
@@ -128,10 +108,8 @@ class API {
     }
     List<dynamic> list = res["results"];
     for (var element in list) {
-      movies.add(MovieModel.fromJson(element));
+      movies.add(MoviesListModel.fromJson(element));
     }
     return movies;
   }
 }
-
-

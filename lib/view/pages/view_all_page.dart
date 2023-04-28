@@ -4,7 +4,7 @@ import 'package:moviespot/view/widgets/poster.dart';
 import '../../model/movie_model.dart';
 
 class ViewAll extends StatelessWidget {
-  final List<MovieModel> movies;
+  final List<MoviesListModel> movies;
   final String title;
 
   const ViewAll({Key? key, required this.movies, required this.title})
@@ -19,7 +19,7 @@ class ViewAll extends StatelessWidget {
           gridDelegate:
               const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemBuilder: (context, int index) {
-            MovieModel movie = movies[index];
+            MoviesListModel movie = movies[index];
             return Poster(movie: movie);
           }),
     );

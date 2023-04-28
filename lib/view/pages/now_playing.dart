@@ -67,7 +67,7 @@ class NowPlaying extends StatelessWidget {
 }
 
 class SliderImage extends StatelessWidget {
-  final MovieModel movie;
+  final MoviesListModel movie;
 
   const SliderImage({super.key, required this.movie});
 

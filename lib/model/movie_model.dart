@@ -1,5 +1,5 @@
-class MovieModel {
-  MovieModel({
+class MoviesListModel {
+  MoviesListModel({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -31,7 +31,7 @@ class MovieModel {
   double? voteAverage;
   int? voteCount;
 
-  MovieModel.fromJson(Map<String, dynamic> json) {
+  MoviesListModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);

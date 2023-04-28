@@ -9,7 +9,7 @@ class TopRatedProvider extends ChangeNotifier {
     getTopRatesMovie();
   }
 
-  List<MovieModel> movieModel = <MovieModel>[];
+  List<MoviesListModel> movieModel = <MoviesListModel>[];
 
   getTopRatesMovie() async {
     movieModel = await API.getMovieList(Strings.topRated);

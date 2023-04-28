@@ -5,7 +5,7 @@ import 'package:moviespot/constants/api.dart';
 import '../model/movie_model.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  List<MovieModel> movieModel = <MovieModel>[];
+  List<MoviesListModel> movieModel = <MoviesListModel>[];
  // List<String> photoList = [];
 
   void getMovieByGenre(String genre) async {

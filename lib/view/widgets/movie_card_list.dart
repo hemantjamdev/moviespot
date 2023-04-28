@@ -5,11 +5,11 @@ import 'package:sizer/sizer.dart';
 
 import '../../constants/strings.dart';
 
-ListView movieCardList(List<MovieModel> movies) {
+ListView movieCardList(List<MoviesListModel> movies) {
   return ListView.builder(
     itemCount: movies.length,
     itemBuilder: (context, int index) {
-      MovieModel movie = movies[index];
+      MoviesListModel movie = movies[index];
       return movieDetailsCard(context, movie);
     },
   );
@@ -21,7 +21,7 @@ animatedLis() {
   });
 }
 
-Widget movieDetailsCard(BuildContext context, MovieModel movie) {
+Widget movieDetailsCard(BuildContext context, MoviesListModel movie) {
   return InkWell(
     onTap: () {
       Navigator.push(
