@@ -10,7 +10,7 @@ import 'package:sizer/sizer.dart';
 class TopRated extends StatelessWidget {
   const TopRated({super.key});
 
-  handleNavigate(BuildContext context, List<MoviesListModel> movie) {
+ void handleNavigate(BuildContext context, List<MoviesListModel> movie) {
     Navigator.push(
       context,
       MaterialPageRoute(

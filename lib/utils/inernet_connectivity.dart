@@ -12,17 +12,14 @@ class ConnectivityProvider extends ChangeNotifier {
   late StreamSubscription<ConnectivityResult> subscription;
   bool isConnected = false;
 
-  checkConnection() {
+ void checkConnection() {
     subscription = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
       if (result == ConnectivityResult.mobile) {
         isConnected = true;
-        log("-----> connectivity is mobile <-----");
       } else if (result == ConnectivityResult.wifi) {
         isConnected = true;
-        log("-----> connectivity is wifi <-----");
-
       } else {
         isConnected = false;
       }

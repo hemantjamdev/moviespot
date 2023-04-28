@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/provider/category_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/loading.dart';
 import '../widgets/movie_card_list.dart';
+
 class SearchByGenre extends StatelessWidget {
   final String genreName;
 
@@ -13,7 +12,7 @@ class SearchByGenre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<CategoryProvider>(context, listen: false)
-        .getMovieByGenre(genreName.toLowerCase());
+        .getMovieByGenre(context, genreName.toLowerCase());
 
     return Scaffold(
       appBar: AppBar(title: Text(genreName)),
@@ -21,7 +20,7 @@ class SearchByGenre extends StatelessWidget {
         child: Consumer<CategoryProvider>(
           builder: (context, CategoryProvider provider, child) {
             return provider.movieModel.isNotEmpty
-                ? movieCardList(provider.movieModel)
+                ? movieCardList(context, provider.movieModel)
                 : const SizedBox();
           },
         ),

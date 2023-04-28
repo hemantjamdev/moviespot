@@ -7,13 +7,13 @@ class SearchProvider extends ChangeNotifier {
   final TextEditingController searchController = TextEditingController();
   List<MoviesListModel> movieModel = <MoviesListModel>[];
 
-  clearList() {
+  void clearList() {
     movieModel.clear();
     notifyListeners();
   }
 
-  searchMovie(String movieName) async {
-    movieModel = await API.getSearchMovie(movieName);
+  void searchMovie(BuildContext context, String movieName) async {
+    movieModel = await API.getSearchMovie(context, movieName);
     notifyListeners();
   }
 

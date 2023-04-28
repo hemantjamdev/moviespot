@@ -5,14 +5,14 @@ import '../constants/strings.dart';
 import '../model/movie_model.dart';
 
 class PopularProvider extends ChangeNotifier {
-  PopularProvider() {
-    getPopular();
+  PopularProvider(BuildContext context) {
+    getPopular(context);
   }
 
   List<MoviesListModel> movieModel = <MoviesListModel>[];
 
-  getPopular() async {
-    movieModel = await API.getMovieList(Strings.popular);
+ void getPopular(BuildContext context) async {
+    movieModel = await API.getMovieList(context,Strings.popular);
     notifyListeners();
   }
 }

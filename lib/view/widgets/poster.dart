@@ -7,11 +7,8 @@ import 'package:sizer/sizer.dart';
 
 class Poster extends StatelessWidget {
   final MoviesListModel movie;
-  final Key heroKey;
 
-  Poster({Key? key, required this.movie})
-      : heroKey = UniqueKey(),
-        super(key: key);
+  const Poster({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +20,11 @@ class Poster extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) =>
-                  MovieDetails(movieId: movie.id!, heroTag: heroKey),
+                  MovieDetails(movieId: movie.id!),
             ),
           );
         },
-        child: Hero(tag: heroKey, child: MovieCard(movie: movie)),
+        child: MovieCard(movie: movie),
       ),
     );
   }
@@ -93,6 +90,4 @@ class MovieCard extends StatelessWidget {
       ),
     );
   }
-
-
 }

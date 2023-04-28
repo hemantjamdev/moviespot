@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:moviespot/constants/api.dart';
 import 'package:moviespot/constants/strings.dart';
 import 'package:moviespot/view/pages/category.dart';
 import 'package:moviespot/view/pages/favorite_page.dart';
@@ -71,11 +70,11 @@ class _HomePageState extends State<HomePage>
       onWillPop: _onWillPop,
       child: Scaffold(
 
-        floatingActionButton:FloatingActionButton(
+       /* floatingActionButton:FloatingActionButton(
           onPressed: (){
            // API.testApi(154);
           },
-        ) ,
+        ) ,*/
         bottomNavigationBar: TabBar(
           controller: tabController,
           tabs: _tabs,

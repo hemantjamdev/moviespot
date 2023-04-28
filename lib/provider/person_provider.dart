@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:moviespot/constants/api.dart';
-import 'package:moviespot/model/PeopleModel.dart';
+import 'package:moviespot/model/people_model.dart';
 
 class PersonProvider extends ChangeNotifier {
   PeopleModel peopleModel = PeopleModel();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:moviespot/constants/colors.dart';
 import 'package:moviespot/provider/search_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,7 @@ class SearchPage extends StatelessWidget {
                 margin: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25.0),
-                    border: Border.all(color: Colors.grey, width: 1)),
+                    border: Border.all(color: AppColors.grey, width: 1)),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 4.0, horizontal: 20),
@@ -32,14 +33,14 @@ class SearchPage extends StatelessWidget {
                     ),
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        provider.searchMovie(provider.searchController.text);
+                        provider.searchMovie(context,provider.searchController.text);
                       } else if (provider.searchController.text.isEmpty) {
                         provider.clearList();
                       }
                     },
                     onSubmitted: (value) {
                       if (value.isNotEmpty) {
-                        provider.searchMovie(provider.searchController.text);
+                        provider.searchMovie(context,provider.searchController.text);
                       } else if (provider.searchController.text.isEmpty) {
                         provider.clearList();
                       }
@@ -48,7 +49,7 @@ class SearchPage extends StatelessWidget {
                 ),
               ),
               provider.movieModel.isNotEmpty
-                  ? Expanded(child: movieCardList(provider.movieModel))
+                  ? Expanded(child: movieCardList(context,provider.movieModel))
                   : Expanded(
                       child: SizedBox(
                         height: double.infinity,

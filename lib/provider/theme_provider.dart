@@ -40,7 +40,7 @@ class AppTheme extends ChangeNotifier {
     ),
   );
 
-  changeTheme(bool dark) {
+ void changeTheme(bool dark) {
     if (dark) {
       appTheme = darkTheme;
       isDarkTheme = true;

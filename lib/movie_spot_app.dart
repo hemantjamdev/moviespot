@@ -24,11 +24,11 @@ class MovieSpot extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<NowPlayingProvider>(
-            create: (context) => NowPlayingProvider()),
+            create: (context) => NowPlayingProvider(context)),
         ChangeNotifierProvider<PopularProvider>(
-            create: (context) => PopularProvider()),
+            create: (context) => PopularProvider(context)),
         ChangeNotifierProvider<TopRatedProvider>(
-            create: (context) => TopRatedProvider()),
+            create: (context) => TopRatedProvider(context)),
         ChangeNotifierProvider<ConnectivityProvider>(
             create: (context) => ConnectivityProvider()),
         ChangeNotifierProvider<MovieDetailsProvider>(
@@ -38,11 +38,12 @@ class MovieSpot extends StatelessWidget {
         ChangeNotifierProvider<FavoriteProvider>(
             create: (context) => FavoriteProvider()),
         ChangeNotifierProvider<AppTheme>(create: (context) => AppTheme()),
-        ChangeNotifierProvider<PersonProvider>(create: (context) => PersonProvider()),
+        ChangeNotifierProvider<PersonProvider>(
+            create: (context) => PersonProvider()),
         ChangeNotifierProvider<RecommendedProvider>(
             create: (context) => RecommendedProvider()),
         ChangeNotifierProvider<UpComingProvider>(
-            create: (context) => UpComingProvider()),
+            create: (context) => UpComingProvider(context)),
         ChangeNotifierProvider<CategoryProvider>(
             create: (context) => CategoryProvider()),
       ],

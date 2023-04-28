@@ -8,6 +8,7 @@ import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:moviespot/view/widgets/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../constants/colors.dart';
 import '../../local_storage/data_model.dart';
 
 class FavoritePage extends StatelessWidget {
@@ -72,7 +73,7 @@ class FavoritePage extends StatelessWidget {
   }
 }
 
-movieCard(BuildContext context, MovieDetailsModel movie) {
+Widget movieCard(BuildContext context, MovieDetailsModel movie) {
   return InkWell(
     onTap: () {
       Navigator.push(
@@ -80,7 +81,6 @@ movieCard(BuildContext context, MovieDetailsModel movie) {
         MaterialPageRoute(
           builder: (context) => MovieDetails(
             movieId: movie.id!,
-            heroTag: UniqueKey(),
           ),
         ),
       );
@@ -120,7 +120,7 @@ movieCard(BuildContext context, MovieDetailsModel movie) {
                 ),
                 Row(
                   children: [
-                    const Icon(Icons.star, color: Colors.amber),
+                    const Icon(Icons.star, color: AppColors.amber),
                     const SizedBox(width: 4),
                     Text(
                       movie.voteAverage.toString(),
@@ -147,18 +147,18 @@ movieCard(BuildContext context, MovieDetailsModel movie) {
                 ),
                 Consumer<FavoriteProvider>(
                   builder: (context, FavoriteProvider provider, child) {
-                    return Container(
-                      margin: const EdgeInsets.all(4),
-                      width: 40.w,
-                      color: Colors.black.withOpacity(0.5),
-                      child: Center(
-                        child: IconButton(
-                          onPressed: () {
-                            provider.removeFav(movie.id!);
-                          },
-                          icon: Icon(
+                    return InkWell(
+                      onTap: () {
+                        provider.removeFav(movie.id!);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        width: 40.w,
+                        color: Colors.black.withOpacity(0.5),
+                        child: Center(
+                          child: Icon(
                             Icons.delete,
-                            color: Colors.white,
+                            color: AppColors.white,
                             size: 22.sp,
                           ),
                         ),

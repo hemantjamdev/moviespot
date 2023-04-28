@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:moviespot/model/video_model.dart';
 import 'package:moviespot/model/cast_model.dart';
@@ -15,25 +14,25 @@ class MovieDetailsProvider extends ChangeNotifier {
   List<Video> videos = <Video>[];
   MovieDetailsModel movieDetailsModel = MovieDetailsModel();
 
-  getVideos(int movieId) async {
+  void getVideos(BuildContext context, int movieId) async {
     videos.clear();
-    List<dynamic> list = await API.getVideos(movieId);
+    List<dynamic> list = await API.getVideos(context, movieId);
     for (var element in list) {
       videos.add(Video.fromJson(element));
     }
     notifyListeners();
   }
 
-  getMovieDetail(int movieId) async {
+  Future<MovieDetailsModel> getMovieDetail(int movieId) async {
     final res = await API.getMovieDetails(movieId);
     return movieDetailsModel =
         MovieDetailsModel.fromJson(res as Map<String, dynamic>);
   }
 
-  getCasting(int movieId) async {
+  void getCasting(BuildContext context, int movieId) async {
     casts.clear();
     crew.clear();
-    castModel = await API.getCasting(movieId);
+    castModel = await API.getCasting(context, movieId);
     getCrew(castModel);
     for (var element in castModel.cast!) {
       casts.add(element);
@@ -41,14 +40,14 @@ class MovieDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  getCrew(CastModel castModel) {
+  void getCrew(CastModel castModel) {
     for (var element in castModel.crew!) {
       crew.add(element);
     }
     notifyListeners();
   }
 
-  getImages(int movieId) async {
+  void getImages(int movieId) async {
     final res = await API.getMovieImages(movieId);
     screenShotModel = ScreenShotModel.fromJson(res as Map<String, dynamic>);
     notifyListeners();

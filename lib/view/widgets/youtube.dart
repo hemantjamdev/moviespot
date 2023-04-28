@@ -41,37 +41,6 @@ class _YouTubeState extends State<YouTube> {
         controller: _controller,
         showVideoProgressIndicator: true,
       ),
-    );/*Center(
-      child: SizedBox(
-        child: Card(
-          color: Colors.red[800],
-          elevation: 5,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                  )),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Center(
-                  child: YoutubePlayer(
-                    controller: _controller,
-                    showVideoProgressIndicator: true,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );*/
+    );
   }
 }

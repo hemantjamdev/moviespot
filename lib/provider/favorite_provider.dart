@@ -27,7 +27,7 @@ class FavoriteProvider extends ChangeNotifier {
     checkForFav(movieId);
   }
 
-  getFavIdList() async {
+ void getFavIdList() async {
     Box<FavDataModel> box = await Hive.openBox<FavDataModel>(Strings.database);
     for (var element in box.keys) {
       movieIdList.add(element);

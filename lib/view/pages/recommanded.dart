@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moviespot/model/movie_model.dart';
-import 'package:moviespot/view/pages/view_all_page.dart';
 import 'package:moviespot/view/widgets/poster.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../provider/recommended_provider.dart';
-import '../../provider/upcoming_provider.dart';
 import '../widgets/loading.dart';
 
 class Recommended extends StatelessWidget {
@@ -17,7 +15,7 @@ class Recommended extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<RecommendedProvider>(context, listen: false)
-        .recommended(movieId);
+        .recommended(context,movieId);
     return Consumer<RecommendedProvider>(
       builder: (context, RecommendedProvider provider, child) {
         return SizedBox(

@@ -25,7 +25,6 @@ class MovieList extends StatelessWidget {
           const TopRated(),
           const PopularMovies(),
           const UpComing(),
-        //  LatestMovies()
         ],
       ),
     );

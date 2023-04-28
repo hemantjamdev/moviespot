@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:moviespot/constants/colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget shimmer({required double height, required double width}) {
   return Shimmer(
     period: const Duration(seconds: 2),
     gradient: LinearGradient(
-      colors: [Colors.grey, Colors.grey[100]!, Colors.grey[500]!],
+      colors: [
+        AppColors.grey,
+        AppColors.grey.withOpacity(0.1),
+        AppColors.grey.withOpacity(0.5),
+      ],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       tileMode: TileMode.repeated,
@@ -14,7 +19,7 @@ Widget shimmer({required double height, required double width}) {
     child: Container(
       height: height,
       width: width,
-      color: Colors.grey,
+      color: AppColors.grey,
     ),
   );
 }

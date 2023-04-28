@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:moviespot/constants/colors.dart';
 import 'package:moviespot/model/movie_model.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/strings.dart';
 
-ListView movieCardList(List<MoviesListModel> movies) {
-  return ListView.builder(
-    itemCount: movies.length,
-    itemBuilder: (context, int index) {
-      MoviesListModel movie = movies[index];
-      return movieDetailsCard(context, movie);
+Widget movieCardList(BuildContext context, List<MoviesListModel> movies) {
+  return AnimatedList(
+    itemBuilder:
+        (BuildContext context, int index, Animation<double> animation) {
+      return _buildAnimatedListItem(context, movies[index], animation);
     },
+    initialItemCount: movies.length,
   );
 }
 
-animatedLis() {
-  return AnimatedList(itemBuilder: (context, int index, Animation animation) {
-    return Text(index.toString());
-  });
+Widget _buildAnimatedListItem(
+    BuildContext context, MoviesListModel item, Animation<double> animation) {
+  return SizeTransition(
+      sizeFactor: animation, child: movieDetailsCard(context, item));
 }
 
 Widget movieDetailsCard(BuildContext context, MoviesListModel movie) {
@@ -29,8 +30,7 @@ Widget movieDetailsCard(BuildContext context, MoviesListModel movie) {
         MaterialPageRoute(
           builder: (context) => MovieDetails(
             movieId: movie.id!,
-            heroTag: UniqueKey(),
-          ),
+                     ),
         ),
       );
     },
@@ -69,7 +69,7 @@ Widget movieDetailsCard(BuildContext context, MoviesListModel movie) {
                 ),
                 Row(
                   children: [
-                    const Icon(Icons.star, color: Colors.amber),
+                    const Icon(Icons.star, color:AppColors.amber),
                     const SizedBox(width: 4),
                     Text(
                       movie.voteAverage.toString(),

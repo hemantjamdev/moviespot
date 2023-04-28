@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:moviespot/constants/colors.dart';
 import 'package:moviespot/constants/strings.dart';
-import 'package:moviespot/view/widgets/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../model/PeopleModel.dart';
+import '../../model/people_model.dart';
 import '../../provider/person_provider.dart';
+import '../widgets/back_button.dart';
 
 class PersonDetails extends StatelessWidget {
   final int personId;
@@ -29,14 +29,7 @@ class PersonDetails extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
-              return const CircularProgressIndicator(); /*ListView.builder(
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: shimmer(height: 50.h, width: 100.w),
-                    );
-                  });*/
+              return const CircularProgressIndicator();
             },
           );
         },
@@ -53,7 +46,7 @@ Widget _buildActorDetails(BuildContext context, PeopleModel actor) {
         Stack(
           children: [
             _buildActorImage(actor.profilePath),
-            _buildBackButton(context),
+            buildBackButton(context),
           ],
         ),
         Padding(
@@ -116,27 +109,6 @@ Widget _buildActorImage(String? profilePath) {
             Colors.black.withOpacity(0.7),
             Colors.transparent,
           ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget _buildBackButton(BuildContext context) {
-  return Positioned(
-    top: 40,
-    left: 16,
-    child: GestureDetector(
-      onTap: () => Navigator.pop(context),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        padding: const EdgeInsets.all(8),
-        child: const Icon(
-          Icons.arrow_back_ios,
-          color: Colors.white,
         ),
       ),
     ),

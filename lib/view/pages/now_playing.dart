@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:moviespot/constants/colors.dart';
 import 'package:moviespot/view/pages/movie_details.dart';
 import 'package:moviespot/view/widgets/rating.dart';
 import 'package:provider/provider.dart';
@@ -30,8 +31,8 @@ class NowPlaying extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MovieDetails(
-                                      movieId: e.id!, heroTag: heroKey),
+                                  builder: (context) =>
+                                      MovieDetails(movieId: e.id!),
                                 ),
                               );
                             },
@@ -39,15 +40,16 @@ class NowPlaying extends StatelessWidget {
                         .toList(),
                     carouselController: _controller,
                     options: CarouselOptions(
-                        autoPlayAnimationDuration: const Duration(seconds: 2),
-                        height: 300,
-                        viewportFraction: 1.0,
-                        enlargeFactor: 0.3,
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        onPageChanged: (index, reason) {
-                          provider.changeIndex(index);
-                        }),
+                      autoPlayAnimationDuration: const Duration(seconds: 2),
+                      height: 300,
+                      viewportFraction: 1.0,
+                      enlargeFactor: 0.3,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      onPageChanged: (index, reason) {
+                        provider.changeIndex(index);
+                      },
+                    ),
                   ),
                   Positioned(
                     bottom: 20,
@@ -55,7 +57,10 @@ class NowPlaying extends StatelessWidget {
                       activeIndex: provider.index,
                       count: provider.movieModel.length,
                       effect: const ScrollingDotsEffect(
-                          spacing: 10, dotHeight: 15, dotWidth: 15),
+                        spacing: 10,
+                        dotHeight: 15,
+                        dotWidth: 15,
+                      ),
                     ),
                   )
                 ],
@@ -75,11 +80,12 @@ class SliderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(Strings.imageBase + movie.backdropPath!),
-          )),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(Strings.imageBase + movie.backdropPath!),
+        ),
+      ),
       child: Stack(
         children: [
           buildRating(rating: movie.voteAverage.toString()),
@@ -89,9 +95,10 @@ class SliderImage extends StatelessWidget {
             child: Text(
               movie.title!.toString(),
               style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                  color: Colors.white),
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+                color:AppColors.white,
+              ),
             ),
           ),
         ],
