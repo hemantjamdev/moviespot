@@ -29,7 +29,7 @@ class PersonDetails extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
-              return const CircularProgressIndicator();
+              return Center(child: const CircularProgressIndicator());
             },
           );
         },
@@ -91,7 +91,7 @@ Widget _buildActorDetails(BuildContext context, PeopleModel actor) {
 
 Widget _buildActorImage(String? profilePath) {
   return Container(
-    height: 60.h,
+    height: 70.h,
     decoration: BoxDecoration(
       image: DecorationImage(
         image: CachedNetworkImageProvider(

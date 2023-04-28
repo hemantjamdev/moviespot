@@ -107,8 +107,8 @@ class MovieDetailsPage extends StatelessWidget {
         Stack(
           children: [
             posterImage(),
-            buildBackButton(context),
-            titleAndTrailer(context),
+
+            titleAndTrailer(context),buildBackButton(context),
           ],
         ),
         const SizedBox(height: 16),
