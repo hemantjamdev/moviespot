@@ -1,7 +1,7 @@
 # moviespot
 
 A new Flutter project.
-<img src="https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png" width="300" height="500">
+<img src="https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png" width="250" height="400">
 
 ![Screenshot_20230429_115256](https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png =250x250)
 
