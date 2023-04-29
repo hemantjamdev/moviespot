@@ -1,7 +1,8 @@
 # moviespot
 
-A new Flutter project.![Screenshot_20230429_115256](https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png)
-![Screenshot_20230429_115347](https://user-images.githubusercontent.com/60656624/235287458-3a79b34b-61f0-4e61-ba1f-830aab3796cb.png)
+A new Flutter project.![Screenshot_20230429_115256]
+(https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png | width=100)
+![Screenshot_20230429_115347](https://user-images.githubusercontent.com/60656624/235287458-3a79b34b-61f0-4e61-ba1f-830aab3796cb.png | width=100)
 ![Screenshot_20230429_115354](https://user-images.githubusercontent.com/60656624/235287459-04fafeaa-233c-4d92-8b7e-9061f989265a.png)
 ![Screenshot_20230429_115401](https://user-images.githubusercontent.com/60656624/235287460-dd9cb5d6-1b29-4ee6-84d5-f2fe055ed828.png)
 ![Screenshot_20230429_115406](https://user-images.githubusercontent.com/60656624/235287461-afb9687d-0383-4c5e-86da-88649cec5362.png)
