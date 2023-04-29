@@ -3,9 +3,7 @@
 A new Flutter project.
 flutter sdk version 3.7.1
 
-<img src="https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png" width="250" height="400">
-
-<img src="https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png" width="250" height="400">
+<img src="https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png" width="250" height="400"><img src="https://user-images.githubusercontent.com/60656624/235287452-48441018-aee4-4189-8553-90fd5e773238.png" width="250" height="400">
 
 <img src="https://user-images.githubusercontent.com/60656624/235287458-3a79b34b-61f0-4e61-ba1f-830aab3796cb.png" width="250" height="400">
 
